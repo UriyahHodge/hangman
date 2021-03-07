@@ -36,6 +36,7 @@ the number of unique letters in secret_word .
 Total score = guesses_remaining* number unique letters in secret_word
 
 **--Game Requirements--**
+
 A. Game Architecture:
 1. The computer must select a word at random from the list of available words that was provided in words.txt.
 2. Users start with 6 guesses.
