@@ -8,17 +8,17 @@ SecretWord::SecretWord()
 
 }
 
-SecretWord::SecretWord(string word) : secretWord(word), length(word.length), secretWordWithGaps(setWordWithGaps(word))
+SecretWord::SecretWord(std::string word) : secretWord(word), length(word.length()), secretWordWithGaps(setWordWithGaps(word))
 {
 
 }
 
-std::string SecretWord::getWord(std::string word)
+std::string SecretWord::getWord()
 {
 	return secretWord;
 }
 
-void SecretWord::setWordWithGaps()
+void SecretWord::setWordWithGaps(std::string word)
 {
 	std::string temp_string = "";
 
@@ -27,7 +27,7 @@ void SecretWord::setWordWithGaps()
 		temp_string = temp_string + secretWord[i] + "_ ";
 	}
 
-	wordWithGaps = temp_string;
+	secretWordWithGaps = temp_string;
 }
 
 std::string SecretWord::getWordWithGaps()

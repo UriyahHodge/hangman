@@ -14,13 +14,13 @@ private:
 
 public:
 	SecretWord();
-	SecretWord(string word);
+	SecretWord(std::string word);
 
-	void setWord(string word);
+	void setWord(std::string word);
 
-	std::string getWord(string word);
+	std::string getWord();
 
-	void setWordWithGaps();
+	void setWordWithGaps(std::string word);
 
 	std::string getWordWithGaps();
 
