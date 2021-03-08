@@ -5,10 +5,11 @@
 
 int main()
 {
+	std::vector<char> letters_guessed;
 	SecretWord mySecretWord("test");
 
-	std::cout("secret word is: " + mySecretWord.getWord()
-		+ "\nword with gaps: " + mySecretWord.getWordWithGaps());
+	std::cout << "secret word is: " << mySecretWord.getWord()
+		<< "\nword with gaps: " << mySecretWord.getWordWithGaps(letters_guessed);
 
 	return 0;
 }
