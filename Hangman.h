@@ -25,7 +25,6 @@ public:
 	bool loseWarning();
 
 	void addLetterToLettersGuessed(char);
-
 };
 
 #endif

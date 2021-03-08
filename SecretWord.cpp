@@ -5,7 +5,6 @@
 
 SecretWord::SecretWord() : secretWord(""), length(0)
 {
-
 }
 
 SecretWord::SecretWord(std::string word) : secretWord(word), length(word.length())

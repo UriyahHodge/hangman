@@ -2,10 +2,12 @@
 
 Hangman::Hangman() : guessesRemaining(6), warningsRemaining(3), mySecretWord(SecretWord())
 {
+	
 }
 
 Hangman::Hangman(std::string secretWord) : guessesRemaining(6), warningsRemaining(3), mySecretWord(SecretWord(secretWord))
 {
+
 }
 
 int Hangman::getRemainingGuesses()

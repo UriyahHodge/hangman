@@ -25,6 +25,7 @@ public:
 	void setLength();
 
 	int getLength();
+
 };
 
 #endif
