@@ -2,27 +2,25 @@
 
 #ifndef SECRETWORD_H
 #define SECRETWORD_H
-
+#include <iostream>
 #include <string>
+#include <vector>
 
 class SecretWord
 {
 private:
 	std::string secretWord;
-	std::string secretWordWithGaps;
 	int length;
 
 public:
 	SecretWord();
-	SecretWord(string word);
+	SecretWord(std::string word);
 
-	void setWord(string word);
+	void setWord(std::string word);
 
-	std::string getWord(string word);
+	std::string getWord();
 
-	void setWordWithGaps();
-
-	std::string getWordWithGaps();
+	std::string getWordWithGaps(std::vector<char>);
 
 	void setLength();
 
