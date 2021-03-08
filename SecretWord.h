@@ -14,9 +14,9 @@ private:
 
 public:
 	SecretWord();
-	SecretWord(std::string word);
+	SecretWord(std::string);
 
-	void setWord(std::string word);
+	void setWord(std::string);
 
 	std::string getWord();
 

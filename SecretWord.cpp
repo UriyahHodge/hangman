@@ -3,7 +3,7 @@
 
 #include "SecretWord.h"
 
-SecretWord::SecretWord()
+SecretWord::SecretWord() : secretWord(""), length(0)
 {
 
 }
