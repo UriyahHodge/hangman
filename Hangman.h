@@ -12,7 +12,8 @@ private:
 	SecretWord mySecretWord;
 	int guessesRemaining;
 	int warningsRemaining;
-	std::vector<char> lettersGuessed;
+	std::string lettersRemaining;
+	std::vector<std::string> lettersGuessed;
 
 public:
 	Hangman();
@@ -24,7 +25,10 @@ public:
 	int getRemainingWarnings();
 	bool loseWarning();
 
-	void addLetterToLettersGuessed(char);
+	void addToLettersGuessed(std::string);
+
+	void dropFromLettersRemaining(std::string);
+	std::string getLettersRemaining();
 };
 
 #endif

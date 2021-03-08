@@ -1,11 +1,11 @@
 #include "Hangman.h"
 
-Hangman::Hangman() : guessesRemaining(6), warningsRemaining(3), mySecretWord(SecretWord())
+Hangman::Hangman() : guessesRemaining(6), warningsRemaining(3), lettersRemaining("abcdefghijklmnopqrstuvwxyz"), mySecretWord(SecretWord())
 {
 	
 }
 
-Hangman::Hangman(std::string secretWord) : guessesRemaining(6), warningsRemaining(3), mySecretWord(SecretWord(secretWord))
+Hangman::Hangman(std::string secretWord) : guessesRemaining(6), warningsRemaining(3), lettersRemaining("abcdefghijklmnopqrstuvwxyz"), mySecretWord(SecretWord(secretWord))
 {
 
 }
@@ -40,7 +40,17 @@ bool Hangman::loseWarning()
 	return canLoseWarning;
 }
 
-void Hangman::addLetterToLettersGuessed(char cur_guess)
+void Hangman::addToLettersGuessed(std::string cur_guess)
 {
 	lettersGuessed.push_back(cur_guess);
+}
+
+void Hangman::dropFromLettersRemaining(std::string cur_guess)
+{
+	lettersRemaining.erase(lettersRemaining.find(cur_guess));
+}
+
+std::string Hangman::getLettersRemaining()
+{
+	return lettersRemaining;
 }
