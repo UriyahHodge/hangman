@@ -6,7 +6,7 @@
 #include <vector>
 
 
-class Hangman 
+class Hangman
 {
 private:
 	SecretWord mySecretWord;
@@ -19,6 +19,9 @@ public:
 	Hangman();
 	Hangman(std::string);
 
+	bool isWordGuessed();
+	std::string getGuessedWord();
+
 	int getRemainingGuesses();
 	bool loseGuess(int);
 
@@ -29,6 +32,8 @@ public:
 
 	void dropFromLettersRemaining(std::string);
 	std::string getLettersRemaining();
+
+
 };
 
 #endif

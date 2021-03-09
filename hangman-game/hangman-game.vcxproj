@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Guess.cpp" />
     <ClCompile Include="..\Hangman.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\SecretWord.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Guess.h" />
     <ClInclude Include="..\Hangman.h" />
     <ClInclude Include="..\SecretWord.h" />
   </ItemGroup>
