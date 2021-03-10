@@ -5,22 +5,17 @@ Guess::Guess() : ALPHABET("abcdefghijklmnopqrstuvwxyz")
 
 }
 
-Guess::Guess(std::string cur_guess) : ALPHABET("abcdefghijklmnopqrstuvwxyz")
+Guess::Guess(char cur_guess) : ALPHABET("abcdefghijklmnopqrstuvwxyz")
 {
 	setLetterGuessed(cur_guess);
 }
 
-void Guess::setLetterGuessed(std::string cur_guess)
+void Guess::setLetterGuessed(char cur_guess)
 {
-	for (unsigned int i = 0; i < cur_guess.length(); ++i)
-	{
-		cur_guess[i] = tolower(cur_guess[i]);
-	}
-
 	letterGuessed = cur_guess;
 }
 
-std::string Guess::getLetterGuessed()
+char Guess::getLetterGuessed()
 {
 	return letterGuessed;
 }
@@ -28,14 +23,13 @@ std::string Guess::getLetterGuessed()
 bool Guess::isValidGuess()
 {
 	return (
-		(letterGuessed.length() == 1) 
-		& 
-		((letterGuessed == "*") 
-		|| (std::find(ALPHABET.begin(), ALPHABET.end(), letterGuessed) == ALPHABET.end()))
-		);
+		((letterGuessed == '*') 
+		|| (ALPHABET.find(letterGuessed)))
+	);
 }
 
-bool Guess::isDoubleGuess(std::vector<std::string> listLettersGuessed)
+bool Guess::isDoubleGuess(std::vector<char> listLettersGuessed)
 {
 	return (std::find(listLettersGuessed.begin(), listLettersGuessed.end(), letterGuessed) == listLettersGuessed.end());
 }
+

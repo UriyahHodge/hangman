@@ -13,13 +13,14 @@ private:
 	int guessesRemaining;
 	int warningsRemaining;
 	std::string lettersRemaining;
-	std::vector<std::string> lettersGuessed;
+	std::vector<char> lettersGuessed;
 
 public:
 	Hangman();
 	Hangman(std::string);
 
 	bool isWordGuessed();
+	std::string getSecretWord();
 	std::string getGuessedWord();
 
 	int getRemainingGuesses();
@@ -28,9 +29,9 @@ public:
 	int getRemainingWarnings();
 	bool loseWarning();
 
-	void addToLettersGuessed(std::string);
+	void addToLettersGuessed(char);
 
-	void dropFromLettersRemaining(std::string);
+	void dropFromLettersRemaining(char);
 	std::string getLettersRemaining();
 
 

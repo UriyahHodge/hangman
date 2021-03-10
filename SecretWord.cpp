@@ -2,6 +2,7 @@
 //class implementation file
 
 #include "SecretWord.h"
+#include <algorithm>
 
 SecretWord::SecretWord() : secretWord(""), length(0)
 {
@@ -17,23 +18,26 @@ std::string SecretWord::getWord()
 	return secretWord;
 }
 
+
 std::string SecretWord::getWordWithGaps(std::vector<char> letters_guessed)
 {
+	
 	std::string secretWordWithGaps = "";
 
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < length; ++i)
 	{
-		if (std::find(letters_guessed.begin(), letters_guessed.end(), i) == letters_guessed.end())
-		{
-			secretWordWithGaps = secretWordWithGaps + "_ ";
-		}
-		else 
+		if (std::find(letters_guessed.begin(), letters_guessed.end(), secretWord[i]) != letters_guessed.end())
 		{
 			secretWordWithGaps = secretWordWithGaps + secretWord[i];
 		}
+		else 
+		{
+			secretWordWithGaps = secretWordWithGaps + "_ ";
+		}
 	}
-
+	
 	return secretWordWithGaps;
+	
 }
 
 void SecretWord::setLength()

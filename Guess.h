@@ -7,18 +7,18 @@
 class Guess
 {
 private:
-	std::string letterGuessed;
+	char letterGuessed;
 	const std::string ALPHABET;
 
 public:
 	Guess();
-	Guess(std::string);
+	Guess(char);
 
-	void setLetterGuessed(std::string);
-	std::string getLetterGuessed();
+	void setLetterGuessed(char);
+	char getLetterGuessed();
 
 	bool isValidGuess();
-	bool isDoubleGuess(std::vector<std::string>);
+	bool isDoubleGuess(std::vector<char>);
 };
 
 

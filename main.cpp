@@ -19,13 +19,12 @@ int main()
 	std::cout << "Welcome to the game Hangman!" << std::endl;
 	std::cin >> letterGuessed;
 
-	Hangman thisGame(letterGuessed);
+	Hangman thisGame("test");
 
-	std::cout << "letter guessed: " << letterGuessed;
+	std::cout << "letter guessed: " << thisGame.getSecretWord() << std::endl;
+	std::cout << "letter guessed: " << thisGame.getGuessedWord() << std::endl;
 
 	displayGameDetails(thisGame);
-
-
 	
 	return 0;
 }
