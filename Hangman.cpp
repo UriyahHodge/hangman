@@ -83,3 +83,24 @@ std::string Hangman::getLettersRemaining()
 {
 	return lettersRemaining;
 }
+
+void Hangman::start()
+{
+	//while loop until guesses run out or the secret word is guessed
+}
+
+int Hangman::numUniqueLetters()
+{
+	std::vector<char> uniqueLetters;
+
+	//iterate through each character of secretWord.
+	//for each char, if not alread in uniqueLetters, then add letter to list
+
+	//return length/size of vector
+	return 0;
+}
+
+int Hangman::calculateTotal()
+{
+	return guessesRemaining * numUniqueLetters();
+}

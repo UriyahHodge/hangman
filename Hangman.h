@@ -34,6 +34,11 @@ public:
 	void dropFromLettersRemaining(char);
 	std::string getLettersRemaining();
 
+	void start();
+
+	int numUniqueLetters();
+	int calculateTotal();
+
 
 };
 
