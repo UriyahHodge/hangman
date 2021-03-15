@@ -1,5 +1,6 @@
 #include "Hangman.h"
 #include <algorithm>
+#include <cctype>
 
 Hangman::Hangman() : guessesRemaining(6), warningsRemaining(3), lettersRemaining("abcdefghijklmnopqrstuvwxyz"), mySecretWord(SecretWord())
 {
@@ -74,6 +75,19 @@ void Hangman::addToLettersGuessed(char cur_guess)
 	lettersGuessed.push_back(cur_guess);
 }
 
+bool Hangman::isValidGuess(std::string letterGuessed)
+{
+	return( (letterGuessed.length() == 1)
+			& ((letterGuessed[0] == '*')
+			|| (isalpha(letterGuessed[0])))
+	);
+}
+
+bool Hangman::isDoubleGuess(char letterGuessed)
+{
+	return (std::find(lettersGuessed.begin(), lettersGuessed.end(), letterGuessed) == lettersGuessed.end());
+}
+
 void Hangman::dropFromLettersRemaining(char cur_guess)
 {
 	lettersRemaining.erase(lettersRemaining.find(cur_guess));
@@ -86,21 +100,50 @@ std::string Hangman::getLettersRemaining()
 
 void Hangman::start()
 {
+	std::string userInput = "initialString";
+	char letterGuessed = 0;
+
+	std::cout << "Welcome to the game Hangman!" << std::endl;
+
 	//while loop until guesses run out or the secret word is guessed
+	std::cout << "Please guess a letter: ";
+	std::cin >> letterGuessed;
+
+	while (userInput.length() > 2)
+	{
+		std::cout << "Please guess a letter: ";
+		std::cin >> letterGuessed;
+
+	}
+
 }
 
 int Hangman::numUniqueLetters()
 {
 	std::vector<char> uniqueLetters;
+	std::string secretWord = mySecretWord.getWord();
 
 	//iterate through each character of secretWord.
-	//for each char, if not alread in uniqueLetters, then add letter to list
-
+	for (int i = 0; i < secretWord.length(); ++i)
+	{
+		//for each char, if not already in uniqueLetters, then add letter to list of uniqueLetters
+		if (std::find(uniqueLetters.begin(), uniqueLetters.end(), secretWord[i]) == uniqueLetters.end())
+			uniqueLetters.push_back(secretWord[i]);
+	}
+	
+	
 	//return length/size of vector
-	return 0;
+	return uniqueLetters.size();
 }
 
 int Hangman::calculateTotal()
 {
 	return guessesRemaining * numUniqueLetters();
+}
+
+void Hangman::displayGameDetails()
+{
+	std::cout << "--------------------" << std::endl;
+	std::cout << "You have " << guessesRemaining << " guesses left." << std::endl;
+	std::cout << "Letters remaining: " << lettersRemaining << std::endl;
 }

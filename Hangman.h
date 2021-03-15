@@ -19,26 +19,37 @@ public:
 	Hangman();
 	Hangman(std::string);
 
+	void start();
+
 	bool isWordGuessed();
+
 	std::string getSecretWord();
+
 	std::string getGuessedWord();
 
 	int getRemainingGuesses();
+
 	bool loseGuess(int);
 
 	int getRemainingWarnings();
+
 	bool loseWarning();
 
 	void addToLettersGuessed(char);
 
+	bool isValidGuess(std::string);
+
+	bool isDoubleGuess(char);
+
 	void dropFromLettersRemaining(char);
+
 	std::string getLettersRemaining();
 
-	void start();
-
 	int numUniqueLetters();
+
 	int calculateTotal();
 
+	void displayGameDetails();
 
 };
 

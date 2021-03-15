@@ -4,27 +4,12 @@
 #include <iostream>
 #include <string>
 
-void displayGameDetails(Hangman thisGame) {
-	std::cout << "--------------------" << std::endl;
-	std::cout << "You have " << thisGame.getRemainingGuesses() << " guesses left." << std::endl;
-	std::cout << "Letters remaining: " << thisGame.getLettersRemaining() << std::endl;
-}
-
 int main()
 {
-	std::string letterGuessed = "";
+	
 
 	//get secret_word from wordlist.txt
 	//display number of words imported from the list
-	std::cout << "Welcome to the game Hangman!" << std::endl;
-	std::cin >> letterGuessed;
-
-	Hangman thisGame("test");
-
-	std::cout << "letter guessed: " << thisGame.getSecretWord() << std::endl;
-	std::cout << "letter guessed: " << thisGame.getGuessedWord() << std::endl;
-
-	displayGameDetails(thisGame);
 	
 	return 0;
 }
