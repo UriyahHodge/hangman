@@ -45,14 +45,9 @@ int Hangman::getRemainingGuesses()
 	return guessesRemaining;
 }
 
-bool Hangman::loseGuess(int loseValue)
+void Hangman::loseGuess(int loseValue)
 {
-	bool canLoseGuess = guessesRemaining > 0;
-
-	if (canLoseGuess)
 		guessesRemaining = guessesRemaining - loseValue;
-	
-	return canLoseGuess;
 }
 
 int Hangman::getRemainingWarnings()
@@ -60,14 +55,14 @@ int Hangman::getRemainingWarnings()
 	return warningsRemaining;
 }
 
-bool Hangman::loseWarning()
+void Hangman::loseWarning()
 {
-	bool canLoseWarning = (warningsRemaining - 1 >= 0);
+	--warningsRemaining;
+}
 
-	if (canLoseWarning)
-		--warningsRemaining;
-
-	return canLoseWarning;
+void Hangman::resetWarnings()
+{
+	warningsRemaining = 0;
 }
 
 void Hangman::addToLettersGuessed(char cur_guess)
@@ -88,6 +83,18 @@ bool Hangman::isDoubleGuess(char letterGuessed)
 	return (std::find(lettersGuessed.begin(), lettersGuessed.end(), letterGuessed) == lettersGuessed.end());
 }
 
+bool Hangman::isBadGuess(char letterGuessed)
+{
+	bool isBad = false;
+
+	if (std::find(mySecretWord.getWord().begin(), mySecretWord.getWord().end(), letterGuessed) == mySecretWord.getWord().end())
+	{
+		isBad = true;
+	}
+		
+	return isBad;
+}
+
 void Hangman::dropFromLettersRemaining(char cur_guess)
 {
 	lettersRemaining.erase(lettersRemaining.find(cur_guess));
@@ -96,26 +103,6 @@ void Hangman::dropFromLettersRemaining(char cur_guess)
 std::string Hangman::getLettersRemaining()
 {
 	return lettersRemaining;
-}
-
-void Hangman::start()
-{
-	std::string userInput = "initialString";
-	char letterGuessed = 0;
-
-	std::cout << "Welcome to the game Hangman!" << std::endl;
-
-	//while loop until guesses run out or the secret word is guessed
-	std::cout << "Please guess a letter: ";
-	std::cin >> letterGuessed;
-
-	while (userInput.length() > 2)
-	{
-		std::cout << "Please guess a letter: ";
-		std::cin >> letterGuessed;
-
-	}
-
 }
 
 int Hangman::numUniqueLetters()

@@ -19,8 +19,6 @@ public:
 	Hangman();
 	Hangman(std::string);
 
-	void start();
-
 	bool isWordGuessed();
 
 	std::string getSecretWord();
@@ -29,17 +27,21 @@ public:
 
 	int getRemainingGuesses();
 
-	bool loseGuess(int);
+	void loseGuess(int);
 
 	int getRemainingWarnings();
 
-	bool loseWarning();
+	void loseWarning();
+
+	void resetWarnings();
 
 	void addToLettersGuessed(char);
 
 	bool isValidGuess(std::string);
 
 	bool isDoubleGuess(char);
+
+	bool isBadGuess(char);
 
 	void dropFromLettersRemaining(char);
 
