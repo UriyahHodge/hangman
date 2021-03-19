@@ -35,6 +35,11 @@ std::string Hangman::getSecretWord()
 	return mySecretWord.getWord();
 }
 
+int Hangman::getWordLegth()
+{
+	return mySecretWord.getLength();
+}
+
 std::string Hangman::getGuessedWord()
 {
 	return mySecretWord.getWordWithGaps(lettersGuessed);
@@ -80,14 +85,14 @@ bool Hangman::isValidGuess(std::string letterGuessed)
 
 bool Hangman::isDoubleGuess(char letterGuessed)
 {
-	return (std::find(lettersGuessed.begin(), lettersGuessed.end(), letterGuessed) == lettersGuessed.end());
+	return (std::find(lettersGuessed.begin(), lettersGuessed.end(), letterGuessed) != lettersGuessed.end());
 }
 
 bool Hangman::isBadGuess(char letterGuessed)
 {
 	bool isBad = false;
-
-	if (std::find(mySecretWord.getWord().begin(), mySecretWord.getWord().end(), letterGuessed) == mySecretWord.getWord().end())
+	std::string secretWord = mySecretWord.getWord();
+	if (std::find(secretWord.begin(), secretWord.end(), letterGuessed) == secretWord.end())
 	{
 		isBad = true;
 	}
@@ -97,7 +102,7 @@ bool Hangman::isBadGuess(char letterGuessed)
 
 void Hangman::dropFromLettersRemaining(char cur_guess)
 {
-	lettersRemaining.erase(lettersRemaining.find(cur_guess));
+	lettersRemaining.erase(std::remove(lettersRemaining.begin(), lettersRemaining.end(), cur_guess), lettersRemaining.end());
 }
 
 std::string Hangman::getLettersRemaining()
@@ -130,7 +135,7 @@ int Hangman::calculateTotal()
 
 void Hangman::displayGameDetails()
 {
-	std::cout << "--------------------" << std::endl;
+	std::cout << "\n--------------------" << std::endl;
 	std::cout << "You have " << guessesRemaining << " guesses left." << std::endl;
 	std::cout << "Letters remaining: " << lettersRemaining << std::endl;
 }

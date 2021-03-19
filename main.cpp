@@ -14,27 +14,33 @@ int main()
 	
 	std::string userInput = "initialString";
 	std::cout << "Welcome to the game Hangman!" << std::endl;
+	std::cout << "I'm thinking of a word that is " << thisGame.getWordLegth() << " letters long." << std::endl;
 
 
 	//while loop until guesses run out or the secret word is guessed
 	while ((thisGame.getRemainingGuesses() > 0) & (thisGame.isWordGuessed() == false))
 	{
-		
+		thisGame.displayGameDetails();
+
+		//get users guess
 		std::cout << "Please guess a letter: ";
 		std::cin >> userInput;
 
-		if (thisGame.isValidGuess(userInput))
+		if (thisGame.isValidGuess(userInput))	//determine if meets valid criteria
 		{
-			userInput[0] = std::tolower(userInput[0]);
+			userInput[0] = std::tolower(userInput[0]);	//convert to lowercase char
 
-			if (thisGame.isDoubleGuess(userInput[0]) == true)
+			if (thisGame.isDoubleGuess(userInput[0]) == true)	//has the user guessed this letter already?
 			{
-				if (thisGame.getRemainingWarnings() > 0)
+				thisGame.loseWarning();
+
+				if (thisGame.getRemainingWarnings() > 0)	//does the user have any warnings remaining
 				{
 					std::cout << "Oops! You've already guessed that letter. You have " << thisGame.getRemainingWarnings() <<  " warnings left" << std::endl;
 				}
-				else
+				else //user is out of warnings -- loses a guess
 				{
+					//set back to 0 remaining warnings cannot be a negative number
 					thisGame.resetWarnings();
 
 					std::cout << "Oops! You've already guessed that letter. You have no more warnings left" << std::endl;
@@ -50,14 +56,15 @@ int main()
 			}
 			*/
 			}
-			else if (thisGame.isBadGuess(userInput[0]) == true)
+			else if (thisGame.isBadGuess(userInput[0]) == true)		//letter guessed is not in secret word
 			{
-				thisGame.addToLettersGuessed(userInput[0]);
-				thisGame.dropFromLettersRemaining(userInput[0]);
+				thisGame.addToLettersGuessed(userInput[0]);			//add to list of letters user has guessed
+				thisGame.dropFromLettersRemaining(userInput[0]);	//remove from remaining available letters to guess
 
 				std::cout << "Oops! That letter is not in my word: " << thisGame.getGuessedWord() << std::endl;
 
-				if (userInput[0] == 'a'
+				//is the guess a vowel?
+				if (userInput[0] == 'a'		
 					|| userInput[0] == 'e'
 					|| userInput[0] == 'i'
 					|| userInput[0] == 'o'
@@ -70,15 +77,15 @@ int main()
 					thisGame.loseGuess(1);
 				}
 			}
-			else
+			else	//must be a valid, good guess
 			{
-				thisGame.addToLettersGuessed(userInput[0]);
-				thisGame.dropFromLettersRemaining(userInput[0]);
+				thisGame.addToLettersGuessed(userInput[0]);			//add to list of letters user has guessed
+				thisGame.dropFromLettersRemaining(userInput[0]);	//remove from remaining available letters to guess
 
 				std::cout << "Good guess: " << thisGame.getGuessedWord() << std::endl;
 			}
 		}
-		else
+		else	//invalid guess
 		{
 			thisGame.loseWarning();
 
@@ -88,13 +95,27 @@ int main()
 			}
 			else
 			{
+				//set back to 0 remaining warnings cannot be a negative number
+				thisGame.resetWarnings();
+
 				std::cout << "Oops! That is not a valid letter. You have no more warnings left" << std::endl;
 				std::cout << "so you lose one guess: " << thisGame.getGuessedWord() << std::endl;
 
 				thisGame.loseGuess(1);
 			}
 		}
+	}
 
+	if (thisGame.isWordGuessed() == true)
+	{
+		std::cout << "\n--------------------" << std::endl;
+		std::cout << "Congratulations, you won!" << std::endl;
+		std::cout << "Your total score for this game is: " << thisGame.calculateTotal() << std::endl;
+	}
+	else
+	{
+		std::cout << "\n--------------------" << std::endl;
+		std::cout << "Sorry, you ran out of guesses. The word was " << thisGame.getSecretWord() << "." << std::endl;
 	}
 	return 0;
 }

@@ -23,6 +23,8 @@ public:
 
 	std::string getSecretWord();
 
+	int getWordLegth();
+
 	std::string getGuessedWord();
 
 	int getRemainingGuesses();
